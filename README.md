@@ -46,7 +46,7 @@ python app.py
 
 ### Preview
 
-TODO
+- [Demo video](https://www.youtube.com/watch?v=SAvcu2zipLQ)
 
 
 ### Reference
