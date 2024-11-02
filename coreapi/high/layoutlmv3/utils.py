@@ -61,5 +61,6 @@ def visualize(image, outputs):
         if predicted_label == "other":
             continue
         draw.rectangle(box, outline=label2color[predicted_label])
-        draw.text((box[0]+10, box[1]-10), text=word, fill=label2color[predicted_label], font=font)
+        visualize_text = f"{predicted_label}: {word}"
+        draw.text((box[0]+10, box[1]-10), text=visualize_text, fill=label2color[predicted_label], font=font)
     return image
