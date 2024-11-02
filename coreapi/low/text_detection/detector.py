@@ -17,7 +17,6 @@ else:
 BASE_PATH = os.path.dirname(__file__)
 detection_models = {
     'craft' : {
-        # 'filename': 'craft_clr_amp_400.pth', #'craft_mlt_25k.pth',
         'filename': 'craft_mlt_25k.pth',
     },
     'dbnet18' : {
@@ -166,8 +165,7 @@ class TextDetector:
             from .DB.detection import get_detector, get_textbox
         else:
             raise RuntimeError("Unsupport detector network. Support networks are craft and dbnet18.")
-        # detector_path = os.path.join(self.model_storage_directory, self.detection_models[self.detect_network]['filename'])
-        detector_path = r"E:\tai_lieu_hoc_tap\tdh\tuyendung\projects\KIE_invoice_minimal2\KIE_invoice_minimal\weights\text_detect\craft_mlt_25k_1.pth"
+        detector_path = os.path.join(self.model_storage_directory, self.detection_models[self.detect_network]['filename'])
 
         self.get_textbox = get_textbox
         self.get_detector = get_detector    
@@ -182,9 +180,9 @@ class TextDetector:
                link_threshold = 0.4, canvas_size = 2560, mag_ratio = 1.,\
                slope_ths = 0.1, ycenter_ths = 0.5, height_ths = 0.5,\
                width_ths = 0.5, add_margin = 0.1, reformat=True, optimal_num_chars=None,
-               threshold = 0.2, bbox_min_score = 0.2, bbox_min_size = 3, max_candidates = 0,
+               threshold = 0.2, bbox_min_score = 0.2, bbox_min_size = 3, max_candidates = 0,\
+               group_text_box_contour_based = True
                ):
-        group_text_box_contour_based = True
         if reformat:
             img, img_cv_grey = reformat_input(img)
 
@@ -221,27 +219,3 @@ class TextDetector:
 
         return horizontal_list, free_list
     
-    def detect2(self, img, min_size = 20, text_threshold = 0.7, low_text = 0.4,\
-               link_threshold = 0.4, canvas_size = 2560, mag_ratio = 1.,\
-               slope_ths = 0.1, ycenter_ths = 0.5, height_ths = 0.5,\
-               width_ths = 0.5, add_margin = 0.1, reformat=True, optimal_num_chars=None,
-               threshold = 0.2, bbox_min_score = 0.2, bbox_min_size = 3, max_candidates = 0,
-               ):
-        if reformat:
-            img, img_cv_grey = reformat_input(img)
-
-        text_box_list = self.get_textbox(self.detector, 
-                                    img, 
-                                    canvas_size = canvas_size, 
-                                    mag_ratio = mag_ratio,
-                                    text_threshold = text_threshold, 
-                                    link_threshold = link_threshold, 
-                                    low_text = low_text,
-                                    poly = False, 
-                                    device = self.device, 
-                                    optimal_num_chars = optimal_num_chars,
-                                    threshold = threshold, 
-                                    bbox_min_score = bbox_min_score, 
-                                    bbox_min_size = bbox_min_size, 
-                                    max_candidates = max_candidates,
-                                    )

@@ -27,7 +27,6 @@ def group_text_boxes_contour_based(img, heatmap, text_boxes):
 def merge_boxes(filter_boxes):
     x1, y1, *_, x4, y4 = filter_boxes[0]
     _, _, x2, y2, x3, y3, _, _ = filter_boxes[-1]
-    # poly = np.array([x1, y1, x2, y2, x3, y3, x4, y4])
     poly = [[x1, y1], [x2, y2], [x3, y3], [x4, y4]]
     return poly
 

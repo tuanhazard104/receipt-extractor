@@ -27,6 +27,8 @@ inference*.py
 */text_recognition/
 */form_identifier/
 */table_detector/
+*/text_detection/EAST/
+*/text_detection/DB/
 
 
 # weights
