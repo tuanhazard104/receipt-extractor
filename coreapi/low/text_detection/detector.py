@@ -140,7 +140,7 @@ class TextDetector:
                  quantize=True, cudnn_benchmark=False
                  ):
 
-        self.model_storage_directory = os.path.join(BASE_PATH, 'models')
+        self.model_storage_directory = os.path.join(BASE_PATH, 'checkpoints')
         if model_storage_directory:
             self.model_storage_directory = model_storage_directory
         Path(self.model_storage_directory).mkdir(parents=True, exist_ok=True)

@@ -1,23 +1,10 @@
-import sys
-import os
-import cv2
 import numpy as np
 from PIL import Image, ImageFont, ImageDraw
-from tqdm import tqdm
 
 from transformers import (
-    AutoConfig,
     AutoModelForTokenClassification,
     AutoProcessor,
-    HfArgumentParser,
-    Trainer,
-    TrainingArguments,
-    set_seed,
 )
-from transformers.data.data_collator import default_data_collator
-from transformers.trainer_utils import get_last_checkpoint
-from transformers.utils import check_min_version
-from transformers.utils.versions import require_version
 
 from torch import nn
 
@@ -27,11 +14,11 @@ from .utils import preprocess_intput, unnormalize_box, visualize, iob_to_label
 class TokenClassifier(object):
     def __init__(self):
         self.processor = AutoProcessor.from_pretrained(
-            r"E:\project\layoutlmv3\layoutlmv3-train2", # mcocr
+            "tuanhazard104/layoutlmv3-finetune-mcocr",
             apply_ocr=False,
         )
         self.model = AutoModelForTokenClassification.from_pretrained(
-            r"E:\project\layoutlmv3\layoutlmv3-train2", # mcocr
+            "tuanhazard104/layoutlmv3-finetune-mcocr",
         )
 
     def classify(self, image, ocr_words):
@@ -88,7 +75,7 @@ class TokenClassifier(object):
 
 class FieldExtractor(object):
     def __init__(self):
-        self.reader = TextReader(lang_list=["en"])
+        self.reader = TextReader()
         self.classifier = TokenClassifier()
     
     def predict(self, image):
