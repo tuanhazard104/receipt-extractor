@@ -20,10 +20,17 @@ outputs/
 images/
 *.ipynb
 note.txt
+test*.py
+inference*.py
+*/object_classification/
+*/strhub/
+*/text_recognition/
+*/form_identifier/
+*/table_detector/
+
 
 # weights
 *.pt
 *.pth
 *.pkl
-test*.py
-inference*.py
+
