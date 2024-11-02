@@ -1,0 +1,1 @@
+from .layoutlmv3 import FieldExtractor
