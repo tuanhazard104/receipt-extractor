@@ -2,8 +2,9 @@ import glob
 import os
 from tqdm import tqdm
 from PIL import Image, ImageFont, ImageDraw
-from coreapi import FieldExtractor
-from coreapi.low.object_segmentation.segmenter import Segmenter
+
+from coreapi import FieldExtractor, Segmenter
+
 import gradio as gr
 
 fieldExtractor = FieldExtractor()

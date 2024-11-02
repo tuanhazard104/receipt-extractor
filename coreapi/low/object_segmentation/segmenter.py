@@ -4,9 +4,6 @@ import numpy as np
 import torch
 from PIL import Image
 
-import sys
-sys.path.append(r"E:\project\ARS\str")
-
 from torchvision.models.segmentation import deeplabv3_mobilenet_v3_large
 from torchvision import transforms
 
@@ -66,8 +63,6 @@ class Segmenter(object):
         rect[:, 1] *= scale_y
         # rect[[0, -1], 0] -= 0.05*imW
         warped = four_point_transform(np.array(image).astype(np.uint8), rect)
-        # debug_img = Image.fromarray(warped)
-        # debug_img.save("debug_demo.jpg")
         return Image.fromarray(warped).convert("RGB")
 
 
